@@ -50,6 +50,14 @@ public class HotelApp {
                     break;
 
                 case 2:
+                    List<Customer> list = hotelLogic.getCustomers();
+
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println("Customer id: " + (i + 1));
+                        System.out.println("SSN: " + list.get(i).getSsn() + "\nName: " + list.get(i).getName() + "\nAddress: " + list.get(i).getAddress() + "\nTelephone: " + list.get(i).getTelephoneNumber());
+                        System.out.println();
+                    }
+
                  break;
 
 
