@@ -107,6 +107,22 @@ public class HotelApp {
 
                 case 6:
 
+                    System.out.print("Enter Room number: ");
+
+                    roomNum = getInput.nextInt();
+                    System.out.print("\nEnter no of beds: ");
+
+                    numOfBeds = getInput.nextInt();
+                    System.out.print("\nEnter price per night: ");
+
+                    price = getInput.nextDouble();
+
+                    if (hotelLogic.addRoom(new Room(roomNum, numOfBeds, price, false))) {
+                        System.out.println("\nRoom Add successfully\n");
+                    } else {
+                        System.out.println("\nRoom number already exists\n");
+                    }
+
                     break;
 
                 case 7:
