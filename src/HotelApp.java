@@ -192,7 +192,17 @@ public class HotelApp {
 
                     break;
 
-                case 8:
+               case 8:
+
+                    System.out.println("Enter SSN");
+                    String ssnum = getInput.next();
+                    System.out.println("Enter Booking (Note Booking id is same as SSN)");
+                    int bookingId = getInput.nextInt();
+                    c = hotelLogic.getCustomer(ssnum);
+                    hotelLogic.checkOutCustomer(c.getSsn(), bookingId);
+
+                    break; 
+                    
                 case 9:
 
                     break;
