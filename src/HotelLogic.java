@@ -94,7 +94,15 @@ public class HotelLogic {
 
         return true;
     }
+    
+    public Boolean checkInCustomer(String ssn, Booking booking) {
 
+        this.bookingList.add(booking);
+
+        return true;
+    }
+
+    
 
 
 
