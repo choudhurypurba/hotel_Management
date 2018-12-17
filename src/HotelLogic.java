@@ -81,6 +81,20 @@ public class HotelLogic {
         return true;
     }
 
+    public Boolean addRoom(Room addRoom) {
+
+        for (int i = 0; i < room.size(); i++) {
+
+            if (room.get(i).getRoomNumber() == addRoom.getRoomNumber()) {
+
+                return false;
+            }
+        }
+        room.add(addRoom);
+
+        return true;
+    }
+
 
 
 
