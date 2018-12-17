@@ -102,7 +102,20 @@ public class HotelLogic {
         return true;
     }
 
-    
+        public Boolean checkOutCustomer(String ssn, int bookingId) {
+
+        List<Room> tempRoomList = new ArrayList<>();
+        for (int i = 0; i < bookingList.size(); i++) {
+
+            if(bookingList.get(i).getBookingId() == bookingId){
+
+                tempRoomList = bookingList.get(i).getRoomList();
+
+            }
+
+
+
+        }
 
 
 
