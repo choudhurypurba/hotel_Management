@@ -126,6 +126,70 @@ public class HotelApp {
                     break;
 
                 case 7:
+                    
+                    boolean a = true;
+                    int counter = 0;
+
+                    System.out.print("Enter customer SSN: ");
+
+                    String s = getInput.next();
+                    c = hotelLogic.getCustomer(s);
+
+                    List<Room> roomList2 = new ArrayList<>(),
+                            rooms = hotelLogic.getAvailableRooms();
+
+                    while (a) {
+                        if (rooms.size() > 0) {
+                            for (int i = 0; i < rooms.size(); i++) {
+
+                                System.out.println("Room num: " + rooms.get(i).getRoomNumber() + "\nNo of beds: " + rooms.get(i).getNumberOfBeds() + "\nPrice: " + rooms.get(i).getPricePerNight());
+                                System.out.println();
+
+                            }
+
+                            System.out.print("Enter Room number: ");
+
+                            int num = getInput.nextInt();
+
+                            for (int i = 0; i < rooms.size(); i++) {
+
+                                if (num == rooms.get(i).getRoomNumber()) {
+                                    roomList2.add(hotelLogic.getRoom(num));
+                                    rooms.remove(i);
+                                    System.out.println("\nRoom added successfully\n");
+                                    counter++;
+                                    break;
+                                }
+                            }
+
+                            if (counter == 0) {
+                                System.out.println("\nWrong room number added");
+                            }
+                            System.out.print("do you want to add more rooms? press y/n: ");
+
+                            if (!getInput.next().equalsIgnoreCase("y")) {
+
+                                a = false;
+                            }
+                            counter = 0;
+                        } else {
+
+                            a = false;
+                            System.out.println("No rooms available");
+
+                        }
+                    }
+
+                    System.out.println("Enter checkin date DD-MM-YYYY");
+                    String[] checkindate = String.valueOf(getInput.next()).split("-");
+                    System.out.println("Enter checkout date DD-MM-YYYY");
+                    String[] checkoutdate = String.valueOf(getInput.next()).split("-");
+                    booking.Booking(Integer.parseInt(c.getSsn()), new Date(Integer.parseInt(checkindate[2]), (Integer.parseInt(checkindate[1]) - 1), Integer.parseInt(checkindate[0])), new Date(Integer.parseInt(checkoutdate[2]), (Integer.parseInt(checkoutdate[1]) - 1), Integer.parseInt(checkoutdate[0])), roomList2);
+
+                    if (hotelLogic.checkInCustomer(c.getSsn(), booking)) {
+                        System.out.println("Booking success!\n");
+                    }
+
                     break;
 
                 case 8:
