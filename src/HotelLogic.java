@@ -116,8 +116,20 @@ public class HotelLogic {
 
 
         }
+            
+           for (Room room1 : tempRoomList) {
+
+            int num = room1.getRoomNumber();
+            for (int i = 0; i < room.size(); i++) {
+                if (num == room.get(i).getRoomNumber()) {
+                    room.get(i).setIsBooked(false);
+                }
+            }
+
+        }
+        return true;         
 
 
-
+  }
 
 }
