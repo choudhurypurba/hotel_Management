@@ -30,8 +30,11 @@ public class HotelApp {
             System.out.println("6.  Add Room");
             System.out.println("7.  Checkin Customer");
             System.out.println("8.  Checkout Customer");
-            System.out.println("9.  Remove Customer");
-            System.out.println("10. Exit\n");
+            System.out.println("9.  Remove room");
+            System.out.println("10.Edit customer informatiom");
+            System.out.println("11.search for booking");
+            System.out.println("12.Edit booking");
+            System.out.println("20. Exit\n");
             System.out.print("Press num: ");
 
             getIndex = getInput.nextInt();
@@ -212,9 +215,60 @@ public class HotelApp {
                     break; 
                     
                 case 9:
+                    System.out.println("Enter a room to be removed");
+                    int roomNumber = getInput.nextInt();
+                    
+                	hotelLogic.removeRoom(roomNumber);
 
                     break;
                 case 10:
+                    
+                	System.out.println("Enter a customer social security number : ");
+                    String socialSecurityNumber = getInput.next();
+                    
+                    Customer customer = hotelLogic.getCustomer(socialSecurityNumber);
+                    System.out.println("1. Edit name.");
+                    System.out.println("2. Edit address.");
+                    System.out.println("3. Edit telephone.");
+                    
+                    System.out.println("\nPress num :");
+                    
+                    int editOption = getInput.nextInt();
+                    
+                    if(editOption == 1){
+                    	System.out.println("Enter the name to be changed : ");
+                    	String nameToBeChanged = getInput.next();
+                    	customer.setName(nameToBeChanged);
+                    }
+                    else if(editOption == 2){
+                    	System.out.println("Enter the address to be changed : ");
+                    	String addressToBeChanged = getInput.next();
+                    	customer.setAddress(addressToBeChanged);
+                    }
+                    else if(editOption == 3){
+                    	System.out.println("Enter the telephone number to be changed : ");
+                    	String phoneToBeChanged = getInput.next();
+                    	customer.setTelephoneNumber(phoneToBeChanged);	
+                    }
+                    else{
+                    	System.out.println("Not a valid option");
+                    }
+                    break;
+                case 11:
+                    System.out.println("Enter the booking id:");
+                	int bookingId1 = getInput.nextInt();
+                	Booking booking = hotelLogic.searchByBookingId(bookingId1);
+                	
+                	if(booking != null){
+                		System.out.println(booking.toString());
+                	}
+                	else{
+                		System.out.println("No booking available");
+                	}
+                	
+                	break;
+                   
+                case 20:
 
                     yORn = false;
                     break;
