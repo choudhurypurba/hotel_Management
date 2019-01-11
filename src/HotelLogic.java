@@ -94,6 +94,26 @@ public class HotelLogic {
 
         return true;
     }
+     public void removeRoom(int roomNumber){
+
+        Boolean removedStatus = room.removeIf(item -> item.getRoomNumber() == roomNumber ? true : false );
+
+        if(removedStatus)
+            System.out.println("Room " + roomNumber + " removed successsfully");
+        else
+            System.out.println("Room " + roomNumber + " doesn't exist");
+    }
+
+    public Booking searchByBookingId(int bookingId){
+
+//    	bookingList.forEach(System.out::println);
+
+        Booking booking = bookingList.stream().filter(item -> item.getBookingId() == bookingId ? true : false).findAny().orElse(null);
+        if(booking != null)
+            return booking;
+        else
+            return null;
+    }
     
     public Boolean checkInCustomer(String ssn, Booking booking) {
 
