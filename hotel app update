@@ -1,0 +1,118 @@
+ case 10:
+                    
+                	System.out.println("Enter a customer social security number : ");
+                    String socialSecurityNumber = getInput.next();
+                    
+                    Customer customer = hotelLogic.getCustomer(socialSecurityNumber);
+                    System.out.println("1. Edit name.");
+                    System.out.println("2. Edit address.");
+                    System.out.println("3. Edit telephone.");
+                    
+                    System.out.println("\nPress num :");
+                    
+                    int editOption = getInput.nextInt();
+                    
+                    if(editOption == 1){
+                    	System.out.println("Enter the name to be changed : ");
+                    	String nameToBeChanged = getInput.next();
+                    	customer.setName(nameToBeChanged);
+                    }
+                    else if(editOption == 2){
+                    	System.out.println("Enter the address to be changed : ");
+                    	String addressToBeChanged = getInput.next();
+                    	customer.setAddress(addressToBeChanged);
+                    }
+                    else if(editOption == 3){
+                    	System.out.println("Enter the telephone number to be changed : ");
+                    	String phoneToBeChanged = getInput.next();
+                    	customer.setTelephoneNumber(phoneToBeChanged);	
+                    }
+                    else{
+                    	System.out.println("Not a valid option");
+                    }
+                    break;
+                case 11:
+                    System.out.println("Enter the booking id:");
+                	int bookingId1 = getInput.nextInt();
+                	Booking booking = hotelLogic.searchByBookingId(bookingId1);
+                	
+                	if(booking != null){
+                		System.out.println(booking.toString());
+                	}
+                	else{
+                		System.out.println("No booking available");
+                	}
+                	
+                	break;               
+                case 12:
+                    System.out.println("Enter booking id ");
+                    
+                    int id=getInput.nextInt();
+                    Booking b=hotelLogic.searchByBookingId(id);
+                  
+                    List<Room> l=b.getRoomList();
+                    
+                    
+                    System.out.println("Enter checkin date as dd-MM-yyyy");
+             
+                    String date = getInput.next();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    System.out.println("Enter checkout date as dd-MM-yyyy");
+             
+                    String date1 = getInput.next();
+                    Date date2=null,date3=null;
+                    
+                    try {
+                     date2 = dateFormat.parse(date);
+                     date3 = dateFormat.parse(date1);
+                    } catch (ParseException e) {
+   
+                     e.printStackTrace();
+                    }
+                    System.out.println("Enter total price");
+                    double pr=getInput.nextDouble();
+                    
+                     System.out.print("Enter Room number to be changed: ");
+
+                    int rn = getInput.nextInt();
+                    
+                    System.out.print("\nEnter no of beds: ");
+
+                    int beds = getInput.nextInt();
+                    System.out.print("\nEnter price per night: ");
+
+                    double p = getInput.nextDouble();
+                    
+                    System.out.println("Enter availability of room as y or n");
+                    String ch=getInput.nextLine();
+                    boolean bol=false;
+                    if(ch.equals("n"))
+                        bol=true;
+                    
+                    int i=0;
+                    for(i=0;i<l.size();i++)
+                    {
+                        if(l.get(i).getRoomNumber()==rn)
+                            break;
+                    }
+                    l.get(i).setPricePerNight(p);
+                    l.get(i).setNumberOfBeds(beds);
+                    l.get(i).setIsBooked(bol);
+                    
+                    b.setCheckInDate(date2);
+                    b.setCheckOutDate(date3);
+                    b.setTotalPrice(pr);
+                    
+                    break;
+                           
+                case 13:
+                    System.out.println("Customer history");
+                    
+                    break;           
+                case 14:
+                    System.out.println("Enter ssn of customer to be removed");
+                    String c = getInput.next();
+                    
+                	hotelLogic.removeCust(c);
+
+                    break;
